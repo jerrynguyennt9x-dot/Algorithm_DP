@@ -39,7 +39,7 @@ def resolve_csv_path(path_arg: Optional[str]) -> str:
         if not candidate.is_absolute():
             candidate = (BASE_DIR / candidate).resolve()
         return str(candidate)
-    return str((BASE_DIR / "dt02_knapsack_small.csv").resolve())
+    return str((BASE_DIR / "dt02_knapsack_large.csv").resolve())
 
 
 # ------------------------------------------------------------------------------
