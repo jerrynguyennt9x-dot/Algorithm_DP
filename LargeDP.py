@@ -26,7 +26,20 @@ import csv
 import re
 import sys
 import time
+from pathlib import Path
 from typing import List, Tuple, Optional
+
+
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def resolve_csv_path(path_arg: Optional[str]) -> str:
+    if path_arg:
+        candidate = Path(path_arg)
+        if not candidate.is_absolute():
+            candidate = (BASE_DIR / candidate).resolve()
+        return str(candidate)
+    return str((BASE_DIR / "dt02_knapsack_small.csv").resolve())
 
 
 # ------------------------------------------------------------------------------
@@ -155,9 +168,9 @@ def print_solution(item_ids, weights, values, W, best_value, chosen_indices):
 # ------------------------------------------------------------------------------
 if __name__ == "__main__":
     # Cho phép truyền đường dẫn CSV qua dòng lệnh, ví dụ:
-    #   python3 knapsack_dp_solution.py /mnt/user-data/uploads/dt02_knapsack_medium.csv
-    # Mặc định vẫn dùng bộ dữ liệu small nếu không truyền tham số.
-    CSV_PATH = sys.argv[1] if len(sys.argv) > 1 else "/mnt/user-data/uploads/dt02_knapsack_small.csv"
+    #   python LargeDP.py dt02_knapsack_medium.csv
+    # Nếu không truyền, tự dùng file small trong cùng thư mục.
+    CSV_PATH = resolve_csv_path(sys.argv[1] if len(sys.argv) > 1 else None)
 
     item_ids, weights, values, W = load_knapsack_csv(CSV_PATH)
 
