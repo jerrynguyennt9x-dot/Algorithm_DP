@@ -1,11 +1,9 @@
 # small
-
 """
 ================================================================================
 HƯỚNG GIẢI 1: QUY HOẠCH ĐỘNG (DYNAMIC PROGRAMMING) CHO BÀI TOÁN
 PHÂN BỔ NGÂN SÁCH / DỰ ÁN (KNAPSACK 0/1)
 ================================================================================
-
 Bài toán:
     Có n dự án, dự án i có chi phí cost[i] và lợi ích benefit[i].
     Chọn tập con các dự án sao cho:
@@ -28,12 +26,9 @@ Nội dung file:
     4. Demo đo thời gian & bộ nhớ khi W tăng dần -> minh họa điểm "bùng nổ".
 ================================================================================
 """
-
 import time
 import tracemalloc
 from typing import List, Tuple
-
-
 # ------------------------------------------------------------------------------
 # 1. DP ĐẦY ĐỦ (2 CHIỀU) - DỄ HIỂU, DỄ TRUY VẾT
 # ------------------------------------------------------------------------------
@@ -76,8 +71,6 @@ def knapsack_dp_full(costs: List[int], benefits: List[int], W: int) -> Tuple[int
     chosen_items.reverse()
 
     return best_value, chosen_items
-
-
 # ------------------------------------------------------------------------------
 # 2. DP TỐI ƯU BỘ NHỚ (1 CHIỀU) - CHỈ LẤY GIÁ TRỊ TỐI ƯU
 # ------------------------------------------------------------------------------
@@ -130,8 +123,6 @@ def knapsack_dp_with_trace(costs: List[int], benefits: List[int], W: int) -> Tup
     chosen_items.reverse()
 
     return best_value, chosen_items
-
-
 # ------------------------------------------------------------------------------
 # 4. DEMO: MINH HỌA "ĐIỂM BÙNG NỔ" KHI W TĂNG DẦN
 # ------------------------------------------------------------------------------
@@ -157,7 +148,6 @@ def demo_scaling_with_W(costs: List[int], benefits: List[int], W_list: List[int]
             print(f"{W:>12,} |  MemoryError - DP không thể chạy với W này")
         finally:
             tracemalloc.stop()
-
 
 # ------------------------------------------------------------------------------
 # MAIN - VÍ DỤ SỬ DỤNG
